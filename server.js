@@ -4,7 +4,7 @@
 
  Insturctor: George Tsang
 
- Heroku website URL: 
+ Heroku website URL: https://stephane-kamdem-web-bank3.herokuapp.com/
 
  Assignment 3 - Web 322 - Web Bank
 */
