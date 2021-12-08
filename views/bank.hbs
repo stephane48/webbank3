@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel='stylesheet' type='text/css' href='/css/bank.css' />
+    <script src="/js/bank.js"></script>
+    <title>Bank Page</title>
+</head>
+
+
+<nav>
+    <section id="loggedUser">
+        <form method="POST" action="/reset">
+           <!-- <label id="logName">{{data.user}}</label>
+            <button id="logOut">Log Out</label> -->
+            <div id="box" onmouseover="changeText('Logout')" onmouseout="changeback('{{{data.user}}}')"  >
+                <button id="text-display" onclick="myLogout()">{{{data.user}}}</button>        
+            </div>
+        </form>
+    </section>
+</nav>
+
+<body>
+
+    <header>
+
+        <h1>Atlantic Bank</h1>
+        <hr>
+
+    </header>
+
+    <main>
+
+        <section class="blockForm">
+            <script>
+                accounts = {{ data.accounts }};
+            </script>
+
+            <form method="POST" action="/bankForm">
+
+                <div for="accountsList">Accounts</div></br>
+                <select id="accountsList" name="accountsList">
+
+                    {{#if data.accounts}}
+                    {{#each data.accounts}}
+                    <option value="{{this}}">{{@key}} Account # {{this}}</option>
+                    {{/each}}
+                    {{else}}
+                    <option value="null">User has no Accounts to Display</option>
+                    {{/if}}
+                </select>
+
+                <label for="balance">Balance</label>
+                <input type="radio" id="balance" name="select" value="balance" onclick="checkSubmit()">
+
+                <label for="deposit">Deposit</label>
+                <input type="radio" id="deposit" name="select" value="deposit" onclick="checkSubmit()">
+
+
+                <label for="openAccount">Open an Account</label>
+                <input type="radio" id="openAccount" name="select" value="openAccount" onclick="checkSubmit()">
+
+
+                <label for="withdrawal">Withdrawal</label>
+                <input type="radio" id="withdrawal" name="select" value="withdrawal" onclick="checkSubmit()">
+
+                <input type="submit" value="Submit" id="btSubmit" disabled>
+
+
+                {{!-- error messages --}}
+                {{#if data.visible}}
+                <label id="labelMessage" style="visibility:visible;">Error Message: {{data.message}}</label>
+
+                {{else}}
+                <label id="labelMessage" style="visibility: hidden;">Error Message: {{data.message}}</label>
+                {{/if}}
+
+                {{!-- account open message --}}
+                {{#if data1.visible}}
+                <label id="accountCreated" style="visibility:visible;">“{{data1.accountType}} Account
+                    #{{data1.accountID}}
+                    Created”
+                </label>
+
+                {{else}}
+                <label id="accountCreated" style="visibility: hidden;"></label>
+                {{/if}}
+
+
+            </form>
+
+            <script>
+
+                function checkSubmit() {
+                    var bt = document.getElementById('btSubmit');
+                    bt.disabled = true;
+                    if (
+                        (document.getElementById("balance").checked) ||
+                        (document.getElementById("deposit").checked) ||
+                        (document.getElementById("openAccount").checked) ||
+                        (document.getElementById("withdrawal").checked)
+                    ) {
+                        bt.disabled = false;
+                    }
+
+                    else {
+                        bt.disabled = true;
+                    }
+
+                }
+
+            </script>
+        </section>
+
+    </main>
+
+
+</body>
+
+</html>

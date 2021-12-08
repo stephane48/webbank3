@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Deposit</title>
+  <link rel="stylesheet" href="/css/bank.css">
+</head>
+
+<body>
+  <!--	placeholder for content from the header.hbs file in the /views/partials directory 
+		the { { > xxx } } syntax means embed the content of file by the name of xxx.hbs			-->
+  {{>header}}
+
+  <section class="blockForm">
+    <form method="POST" action="/depositForm">
+      <span id="x" style=color:#00a7c1>Deposit</span></br>
+      <div style=color:#00a7c1>---------------------------</div></br>
+      <div id="accountNumber" style=color:#00a7c1>Account Number: {{data1.accountID}} </div>
+      </br>
+      <input type="text" id="depositAmount" name="depositAmount">
+      <input type="submit" value="Submit">
+    </form>
+
+    <form action="/returnBank" method="POST">
+      <input type="submit" value="Cancel">
+    </form>
+  </section>
+
+</body>
+
+</html>
